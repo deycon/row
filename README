@@ -1,0 +1,34 @@
+README
+======
+Row is an application to manage right of way permits for individuals or companies to perform their duting during excavation or other related right of way activity. 
+
+The application is writen in java programming language using jsp and structs 2. Mysql is the database of choice.
+To install you will need to compile the src code using java compiler and deploy using one of servlet/jsp servers running apache tomcat or other servlet containers.
+
+In the WEB-INF directory, there is a file called web.xml.example, you will need to copy to a file with the name web.xml and set the url's in this file accordingly.
+
+The database setup is in the file context.xml.example in the directory META-INF. You would need to change the file name to context.xml and set the url and password for your database.
+
+The application assumes that you have a CAS authentication server. You will need the url for this server in WEB-INF/web.xml file mentioned before.
+
+You will need to create the database (mysql) with the name row or any other name and your own password. Use the file scripts/mysql.sql file to create these tables.
+When database is created you will need to add a list of users who are allowed to use the system, look into database table users and add the users accordingly.
+
+If you create another database other than mysql you will need to change what is in context.xml accordingly.
+
+If you add new fields to database tables make sure to add similar attributes to related classes and jsp pages.
+
+When everything is set, you can point your browser to
+
+http://your server url/row
+
+Can be used for public to search for excavation in the area. Limited option are available for public. For authorized users will have more options besides what the public can see. Adding new permit, companies, contacts, bonds, excavations, invoices, etc. We are using google maps to draw markers at excavation points using the lat-long coordinates that are provided when excavation location is entered.
+Users can do search and certain users can run reports as well.
+
+You will be promted for Username and Password from your CAS server.
+
+I used ant and build to compile java classes. If you want to use maven, you may need to restructure the files in maven way.
+
+
+
+ 

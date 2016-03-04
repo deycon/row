@@ -1,0 +1,32 @@
+log4j.rootLogger=DEBUG, stdout, R
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d %-5p %c (%L) - %m%n
+#
+log4j.appender.R=org.apache.log4j.RollingFileAppender
+log4j.appender.R.File=${catalina.home}/logs/xnov.log
+log4j.appender.R.MaxFileSize=100KB
+#
+# Keep 3 backup file
+log4j.appender.R.MaxBackupIndex=3
+log4j.appender.R.layout=org.apache.log4j.PatternLayout
+log4j.appender.R.layout.ConversionPattern=%d [%t] %-5p %c (%L) - %m%n
+#
+# for struts stuff
+log4j.logger.com.opensymphony=ERROR
+log4j.logger.com.opensymphony.xwork2=ERROR
+log4j.logger.com.opensymphony.xwork2.ognl=ERROR
+log4j.logger.com.opensymphony.xwork2.util.fs=ERROR
+log4j.logger.ognl=ERROR
+log4j.logger.org.apache=WARN
+log4j.logger.org.apache.struts2=DEBUG
+log4j.logger.org.apache.struts2.components=ERROR
+log4j.logger.org.apache.struts2.dispatcher=ERROR
+log4j.logger.org.apache.struts2.convention=ERROR
+
+log4j.logger.org.apache.struts2.util=ERROR
+log4j.logger.org.apache.struts2.util.StrutsTypeConverter=ERROR
+log4j.logger.org.apache.struts2.util=ERROR
+
+log4j.logger.freemarker=ERROR
