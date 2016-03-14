@@ -15,7 +15,6 @@ $RECYCLE.BIN/
 *.msp
 *.old
 *.class
-*.old
 *.docs
 
 # Windows shortcuts
@@ -52,9 +51,8 @@ Temporary Items
 .exe
 .old
 .svn
-docs
-prepare.java
+.docs
+src/permit/prepare.java
 context.xml
 web.xml
 build
-permit

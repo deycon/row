@@ -18,7 +18,7 @@
 	 create table companies(id int not null auto_increment, name varchar(70), address varchar(70), city varchar(70), state varchar(2), zip varchar(10), phone varchar(30), website varchar(70), notes varchar(500), primary key(id))engine=InnoDB;
 	 create table contact_types(id int not null auto_increment, name varchar(30) not null unique, primary key(id));
 	 
-	 insert into contact_types values(1,'Contractor'),(2,'A&E'),(3,'Property Owner'),(4,'Developer'),(5,"Utility'),(6,"Internal");
+	 insert into contact_types values(1,'Contractor'),(2,'A&E'),(3,'Property Owner'),(4,'Developer'),(5,'Utility'),(6,'Internal');
 ;;
 	 create table contacts (id int not null auto_increment, fname varchar(70),lname varchar(70), title varchar(70), type_id int, address varchar(70), city varchar(70), state varchar(2), zip varchar(10), work_phone varchar(20), cell_phone varchar(20), fax varchar(20), email varchar(70), notes varchar(500), primary key(id), foreign key(type_id) references contact_types(id))engine=InnoDB;	 
 ;;
@@ -29,11 +29,13 @@
 ;;
 ;;	 make the two columns unique
   alter table company_contacts add unique unique_index(company_id, contact_id);
-	 
+;;
+;; 
 	 create table bond_companies(id int not null auto_increment, name varchar(70) not null unique, primary key(id))engine=InnoDB;
 	 
-	 create table bonds (id int not null auto_increment, bond_company_id, bond_num varchar(20), expire_date date, amount double(12,2), company_contact_id int, notes varchar(500), description varchar(70), type enum('Excavation','Development','Grading') default 'Excavation', description varchar(70), primary key(id), foreign key(bond_company_id) references bond_companies(id),foreign key(company_contact_id) references company_contacts(id))engine=InnoDB;
-
+	 create table bonds (id int not null auto_increment, bond_company_id, bond_num varchar(20), expire_date date, amount double(12,2), company_contact_id int, notes varchar(500), description varchar(70), type enum('Excavation','Development','Grading') default 'Excavation', primary key(id), foreign key(bond_company_id) references bond_companies(id),foreign key(company_contact_id) references company_contacts(id))engine=InnoDB;
+;;
+;; 
 	 create table addresses(id int not null auto_increment,address varchar(70), loc_lat double(12,6), loc_long double(12,6), primary key(id))engine=InnoDB;
 
 	 create table statuses(id int not null auto_increment, name varchar(30) not null unique, primary key(id))engine=InnoDB;
