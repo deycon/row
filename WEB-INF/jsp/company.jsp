@@ -57,8 +57,9 @@
 									<td>Title </td>
 									<td>Category</td>
 									<td>Phones</td>
-									<td>Email</td>
-									<td>Action</td>
+									<td>Add </td>
+									<td>Add </td>
+									<td>Add </td>
 								</tr>				
 								<s:iterator var="one" value="company.company_contacts">
 									<s:if test="contact != null">
@@ -81,11 +82,14 @@
 											<td>
 												<s:property value="contact.phones" />
 											</td>		
-											<td>			
-												<s:property value="contact.email" />
+											<td>
+												<button onclick="document.location='<s:property value='#application.url' />permit.action?company_contact_id=<s:property value='id' />';return false;">New Permit</button>
 											</td>
 											<td>
-												<button onclick="document.location='<s:property value='#application.url' />permit.action?company_contact_id=<s:property value='id' />';return false;">Add New Permit</button>
+												<button onclick="document.location='<s:property value='#application.url' />bond.action?company_contact_id=<s:property value='id' />';return false;">New Bond</button>
+											</td>
+											<td>
+												<button onclick="document.location='<s:property value='#application.url' />insurance.action?company_contact_id=<s:property value='id' />';return false;">New Insurance</button>
 											</td>
 										</tr>
 									</s:if>
@@ -146,7 +150,25 @@
 					</table>
 				</td>
 			</s:else>
-		</tr>		  
+		</tr>
+		<s:if test="company.hasBonds()" >
+			<tr>
+				<td>
+					<s:set var="bondsTitle" value="bondsTitle" />	
+					<s:set var="bonds" value="%{company.bonds}" />
+					<%@  include file="bondsShort.jsp" %>	  
+				</td>
+			</tr>
+		</s:if>
+		<s:if test="company.hasInsurances()" >
+			<tr>
+				<td>
+					<s:set var="insurancesTitle" value="insurancesTitle" />	
+					<s:set var="insurances" value="%{company.insurances}" />
+					<%@  include file="insurancesShort.jsp" %>	  
+				</td>
+			</tr>
+		</s:if>		
 		<s:if test="company.hasPermits()" >
 			<tr>
 				<td>
@@ -165,15 +187,6 @@
 				</td>
 			</tr>
 		</s:if>
-		<s:if test="company.hasBonds()" >
-			<tr>
-				<td>
-					<s:set var="bondsTitle" value="bondsTitle" />	
-					<s:set var="bonds" value="%{company.bonds}" />
-					<%@  include file="bondsShort.jsp" %>	  
-				</td>
-			</tr>
-		</s:if>		  
   </table>
 </s:form>
 

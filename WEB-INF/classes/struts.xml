@@ -65,6 +65,13 @@
 		<result name="input">/WEB-INF/jsp/bond.jsp</result>
 		<result name="error">/WEB-INF/jsp/bond.jsp</result>		
       </action>
+      <action name="insurance" 
+              class="permit.InsuranceAction" 
+              method="execute">
+				<result>/WEB-INF/jsp/insurance.jsp</result> 
+				<result name="input">/WEB-INF/jsp/insurance.jsp</result>
+				<result name="error">/WEB-INF/jsp/insurance.jsp</result>		
+      </action>			
       <action name="type" 
               class="permit.TypeAction" 
               method="execute">
@@ -121,7 +128,14 @@
 		<result>/WEB-INF/jsp/companyContactStart.jsp</result> 
 		<result name="input">/WEB-INF/jsp/companyContactStart.jsp</result>
 		<result name="error">/WEB-INF/jsp/companyContactStart.jsp</result>		
-      </action>	  
+      </action>
+      <action name="insuranceStart" 
+              class="permit.InsuranceStartAction" 
+              method="execute">
+		<result>/WEB-INF/jsp/companyContactStart.jsp</result> 
+		<result name="input">/WEB-INF/jsp/companyContactStart.jsp</result>
+		<result name="error">/WEB-INF/jsp/companyContactStart.jsp</result>		
+      </action>			
       <action name="excavation" 
               class="permit.ExcavationAction" 
               method="execute">
@@ -138,75 +152,82 @@
       <action name="inspection" 
               class="permit.InspectionAction" 
               method="execute">
-		<result>/WEB-INF/jsp/inspection.jsp</result> 
-		<result name="input">/WEB-INF/jsp/inspection.jsp</result>
-		<result name="error">/WEB-INF/jsp/inspection.jsp</result>		
+				<result>/WEB-INF/jsp/inspection.jsp</result> 
+				<result name="input">/WEB-INF/jsp/inspection.jsp</result>
+				<result name="error">/WEB-INF/jsp/inspection.jsp</result>		
       </action>
       <action name="receipt" 
               class="permit.ReceiptAction" 
               method="execute">
-		<result>/WEB-INF/jsp/receipt.jsp</result> 
-		<result name="input">/WEB-INF/jsp/receipt.jsp</result>
-		<result name="error">/WEB-INF/jsp/receipt.jsp</result>		
+				<result>/WEB-INF/jsp/receipt.jsp</result> 
+				<result name="input">/WEB-INF/jsp/receipt.jsp</result>
+				<result name="error">/WEB-INF/jsp/receipt.jsp</result>		
       </action>	  
       <action name="bondSearch" 
               class="permit.BondSearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/bondSearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/bondSearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/bondSearch.jsp</result>		
-      </action>	  
+				<result>/WEB-INF/jsp/bondSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/bondSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/bondSearch.jsp</result>		
+      </action>
+      <action name="insuranceSearch" 
+              class="permit.InsuranceSearchAction" 
+              method="execute">
+				<result>/WEB-INF/jsp/insuranceSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/insuranceSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/insuranceSearch.jsp</result>		
+      </action>			
       <action name="companySearch" 
               class="permit.CompanySearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/companySearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/companySearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/companySearch.jsp</result>		
+				<result>/WEB-INF/jsp/companySearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/companySearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/companySearch.jsp</result>		
       </action>
       <action name="contactSearch" 
               class="permit.ContactSearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/contactSearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/contactSearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/contactSearch.jsp</result>		
+				<result>/WEB-INF/jsp/contactSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/contactSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/contactSearch.jsp</result>		
       </action>	  
       <action name="invoiceSearch" 
               class="permit.InvoiceSearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/invoiceSearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/invoiceSearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/invoiceSearch.jsp</result>		
+				<result>/WEB-INF/jsp/invoiceSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/invoiceSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/invoiceSearch.jsp</result>		
       </action>	  
       <action name="permitSearch" 
               class="permit.PermitSearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/permitSearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/permitSearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/permitSearch.jsp</result>		
+				<result>/WEB-INF/jsp/permitSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/permitSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/permitSearch.jsp</result>		
       </action>
       <action name="excavationSearch" 
               class="permit.ExcavationSearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/excavationSearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/excavationSearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/excavationSearch.jsp</result>
-		<result name="map">/WEB-INF/jsp/drawMarkersMap.jsp</result>
-		<result name="map2">/WEB-INF/jsp/drawMarkersMap2.jsp</result>		
+				<result>/WEB-INF/jsp/excavationSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/excavationSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/excavationSearch.jsp</result>
+				<result name="map">/WEB-INF/jsp/drawMarkersMap.jsp</result>
+				<result name="map2">/WEB-INF/jsp/drawMarkersMap2.jsp</result>		
       </action>
       <action name="inspectionSearch" 
               class="permit.InspectionSearchAction" 
               method="execute">
-		<result>/WEB-INF/jsp/inspectionSearch.jsp</result> 
-		<result name="input">/WEB-INF/jsp/inspectionSearch.jsp</result>
-		<result name="error">/WEB-INF/jsp/inspectionSearch.jsp</result>		
+				<result>/WEB-INF/jsp/inspectionSearch.jsp</result> 
+				<result name="input">/WEB-INF/jsp/inspectionSearch.jsp</result>
+				<result name="error">/WEB-INF/jsp/inspectionSearch.jsp</result>		
       </action>	  	  
 
       <action name="statsReport" 
             class="permit.ReportStatsAction" 
             method="execute">
-		<result name="input">/WEB-INF/jsp/reportStatsInput.jsp</result>		
-		<result name="error">/WEB-INF/jsp/reportStatsInput.jsp</result>
-		<result name="success">/WEB-INF/jsp/reportStatsResult.jsp</result>
+				<result name="input">/WEB-INF/jsp/reportStatsInput.jsp</result>		
+				<result name="error">/WEB-INF/jsp/reportStatsInput.jsp</result>
+				<result name="success">/WEB-INF/jsp/reportStatsResult.jsp</result>
       </action>
       <action name="report" 
             class="permit.ReportAction" 

@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 public class PermitList {
 
     String id="", which_date="date", date_from="", date_to="", reviewer_id="",
-				status="",company_contact_id="", bond_id="", invoice_id="", permit_type="", company_id="", contact_id="", permit_num="";
+				status="",company_contact_id="", bond_id="", invoice_id="", permit_type="", company_id="", contact_id="", permit_num="", insurance_id="";
 		String limit = "limit 20", sort_by="p.id DESC ";
 		String searchStr = "";
 		boolean noInvoice = false;
@@ -55,6 +55,10 @@ public class PermitList {
 				if(val != null)
 						bond_id = val;
     }
+    public void setInsurance_id(String val){
+				if(val != null)
+						insurance_id = val;
+    }		
     public void setInvoice_id(String val){
 				if(val != null)
 						invoice_id = val;
@@ -141,6 +145,9 @@ public class PermitList {
 		public String getBond_id(){
 				return bond_id;
 		}
+		public String getInsurance_id(){
+				return insurance_id;
+		}		
 		public String getInvoice_id(){
 
 				return	invoice_id;
@@ -179,7 +186,7 @@ public class PermitList {
 						"p.notes, " + 
 						"p.invoice_id, " + 
 						"p.permit_type,  " +
-						"u.empid,u.fullname,u.role,u.active "+
+						"u.empid,u.fullname,u.role,u.active,p.insurance_id "+
 						"";			
 				String qf = "from excavpermits p "+
 						" left join company_contacts cc on p.company_contact_id = cc.id "+
@@ -238,7 +245,11 @@ public class PermitList {
 				if(!invoice_id.equals("")){
 						if(!qw.equals("")) qw += " and ";
 						qw += " p.invoice_id = ? ";
-				}		
+				}
+				if(!insurance_id.equals("")){
+						if(!qw.equals("")) qw += " and ";
+						qw += " p.insurance_id = ? ";
+				}				
 				qq += qf;
 				if(!qw.equals("")){
 						qq += " where "+qw;
@@ -286,7 +297,10 @@ public class PermitList {
 						}
 						if(!invoice_id.equals("")){
 								pstmt.setString(jj++, invoice_id);
-						}					
+						}
+						if(!insurance_id.equals("")){
+								pstmt.setString(jj++, insurance_id);
+						}						
 						rs = pstmt.executeQuery();
 						permits = new ArrayList<Permit>();
 						while(rs.next()){
@@ -307,7 +321,8 @@ public class PermitList {
 																				rs.getString(14),
 																				rs.getString(15),
 																				rs.getString(16),
-																				rs.getString(17)
+																				rs.getString(17),
+																				rs.getString(18)
 																				);
 								permits.add(one);
 						}

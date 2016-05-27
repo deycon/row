@@ -19,7 +19,10 @@
   </s:if>
   <s:if test="bond.permit_id != ''">
 		<s:hidden name="bond.permit_id" value="%{bond.permit_id}" />
-  </s:if>  
+  </s:if>
+	<p>Note: if the bond company is not listed in the bond company pick up list
+		you need to add it to the list by click on 'Admin' link and pick 'Edit Categories' then pick bond companies.
+	</p>
   <s:if test="hasActionErrors()">
 	<div class="errors">
       <s:actionerror/>

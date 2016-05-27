@@ -275,6 +275,20 @@ public class Bond implements java.io.Serializable{
 		public String toString(){
 				return bond_num;
 		}
+		public String getInfo(){
+				String ret = "";
+				getBond_company();
+				if(bond_company != null){
+						ret = bond_company.getName();
+				}
+				if(!bond_num.equals("")){
+						ret += " #:"+bond_num;
+				}
+				if(!expire_date.equals("")){
+						ret += " Exp:"+expire_date;
+				}
+				return ret;
+		}
 		private String addBondToPermit(){
 				String msg = "";
 				getPermit();

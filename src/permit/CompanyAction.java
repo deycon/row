@@ -129,7 +129,10 @@ public class CompanyAction extends TopAction{
 	}
 	public String getBondsTitle(){
 		return "Company recent bond(s) ";
-	}	
+	}
+	public String getInsurancesTitle(){
+		return "Company recent insurance(s) ";
+	}		
 	public void setContact_id(String val){
 		if(val != null && !val.equals(""))
 			contact_id = val;

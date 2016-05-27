@@ -68,7 +68,7 @@
 		  <a href="<s:property value='#application.url'/>companySearch.action" class="nav1-link">Companies</a>
 		  <a href="<s:property value='#application.url'/>contactSearch.action" class="nav1-link">Contacts</a>
 		  <a href="<s:property value='#application.url'/>bondSearch.action" class="nav1-link">Bonds</a>		  
-		  <a href="<s:property value='#application.url'/>inspectionSearch.action" class="nav1-link">Inspections</a>
+		  <a href="<s:property value='#application.url'/>insuranceSearch.action" class="nav1-link">Insurances</a>
 		  <a href="<s:property value='#application.url'/>invoiceSearch.action" class="nav1-link">Invoices</a>
 		</s:if>
 	  </nav>

@@ -23,7 +23,7 @@ public class Permit implements java.io.Serializable{
 		String status = "";
 		String project = "";
 		String reviewer_id = "", start_date="", date="";
-		String bond_id = "", company_contact_id=""; 
+		String bond_id = "", company_contact_id="", insurance_id=""; 
 		String fee = "", notes="";
 		String invoice_id = "";
 		String permit_type = "", user_id="";
@@ -34,12 +34,14 @@ public class Permit implements java.io.Serializable{
 		CompanyContact companyContact = null;
 		Company company = null;
 		Contact contact = null;
+		Insurance insurance = null;
 		List<Excavation> excavations = null;
 		List<Inspection> inspections = null;
 
 		// for permit that does not have an invoice yet, the user can pick one to add to the permit
 		List<Invoice> invoices = null;
 		List<Bond> bonds = null;
+		List<Insurance> insurances = null;
 		//
 		String message="";
 
@@ -72,12 +74,13 @@ public class Permit implements java.io.Serializable{
 				  
 									String val15,
 									String val16,
-									String val17				  
+									String val17,
+									String val18
 									){
 				setValues(val, val2, val3, val4, val5,
 									val6, val7, val8, val9, val10,
 									val11, val12, val13, val14, val15,
-									val16, val17);
+									val16, val17, val18);
 		}
 
 		void setValues(String val,
@@ -97,7 +100,8 @@ public class Permit implements java.io.Serializable{
 									 String val14,
 									 String val15,
 									 String val16,
-									 String val17
+									 String val17,
+									 String val18
 									 ){
 				setId(val);
 				setPermit_num(val2);
@@ -116,6 +120,7 @@ public class Permit implements java.io.Serializable{
 				if(!reviewer_id.equals("")){
 						reviewer = new User(reviewer_id, val14, val15, val16, val17);
 				}
+				setInsurance_id(val18);
 		}
     //
 		// setters
@@ -161,6 +166,10 @@ public class Permit implements java.io.Serializable{
 				if(value != null && !value.equals("-1"))   // when picked from list
 						bond_id = value;
 		}
+		public void setInsurance_id(String value){ 
+				if(value != null && !value.equals("-1"))   // when picked from list
+						insurance_id = value;
+		}		
 		public void setCompany_contact_id(String value){
 				if(value != null)
 						company_contact_id = value;
@@ -203,7 +212,10 @@ public class Permit implements java.io.Serializable{
 		}
 		public String getReviewer_id(){
 				return reviewer_id;
-		}	
+		}
+		public String getInsurance_id(){
+				return insurance_id;
+		}		
 		public String getStart_date(){
 				return start_date;
 		}	
@@ -254,6 +266,19 @@ public class Permit implements java.io.Serializable{
 				}
 				return bond;
 		}
+		public boolean hasBond(){
+				return !bond_id.equals("");
+		}
+		public Insurance getInsurance(){
+				if(insurance == null && !insurance_id.equals("")){
+						Insurance one = new Insurance(insurance_id);
+						String back = one.doSelect();
+						if(back.equals("")){
+								insurance = one;
+						}
+				}
+				return insurance;
+		}		
 		public Invoice getInvoice(){
 				if(invoice == null && !invoice_id.equals("")){
 						Invoice one = new Invoice(invoice_id);
@@ -325,7 +350,32 @@ public class Permit implements java.io.Serializable{
 						}
 				}
 				return bonds;
-		}		
+		}
+		public List<Insurance> getInsurancesForSelection(){
+				if(insurance_id.equals("")){
+						
+						InsuranceList  ill = new InsuranceList();
+						getCompany();
+						if(company != null){
+								ill.setCompany_id(company.getId());
+						}
+						else{
+								getContact();
+								if(contact != null){
+										ill.setContact_id(contact.getId());
+								}
+						}
+						ill.setActiveOnly();
+						String back = ill.find();
+						if(back.equals("")){
+								List<Insurance> ones = ill.getInsurances();
+								if(ones != null && ones.size() > 0){
+										insurances = ones;
+								}
+						}
+				}
+				return insurances;
+		}				
 		public boolean canPickInvoice(){
 				getInvoices();
 				return invoices != null && invoices.size() > 0;
@@ -333,6 +383,10 @@ public class Permit implements java.io.Serializable{
 		public boolean canPickBond(){
 				getBondsForSelection();
 				return bonds != null && bonds.size() > 0;
+		}
+		public boolean canPickInsurance(){
+				getInsurancesForSelection();
+				return insurances != null && insurances.size() > 0;
 		}		
 		public Contact getContact(){
 				if(contact == null) 
@@ -370,8 +424,23 @@ public class Permit implements java.io.Serializable{
 				}
 				return bonds;
 		}
-		public boolean hasBond(){
-				return !bond_id.equals("");
+		/**
+		 * eventhough we have only one insurance per permit
+		 * we want to List all insurances in jsp
+		 */
+		public List<Insurance> getInsurances(){
+				List<Insurance> insurances = null;
+				if(hasInsurance()){
+						getInsurance();
+						if(insurance != null){
+								insurances = new ArrayList<Insurance>(1);
+								insurances.add(insurance);
+						}
+				}
+				return insurances;
+		}		
+		public boolean hasInsurance(){
+				return !insurance_id.equals("");
 		}
 		public boolean hasInvoice(){
 				return !invoice_id.equals("");
@@ -449,7 +518,7 @@ public class Permit implements java.io.Serializable{
 
 				String qq = "insert into excavpermits values (0,"+
 						"?,?,?,?,?,?,?,?,?,?,"+
-						"?,?)";
+						"?,?,?)";
 				con = Helper.getConnection();
 				if(con == null){
 						msg = "Could not connect to Database ";
@@ -586,6 +655,10 @@ public class Permit implements java.io.Serializable{
 								pstmt.setNull(jj++, Types.VARCHAR);
 						else				
 								pstmt.setString(jj++, permit_type);
+						if(insurance_id.equals(""))
+								pstmt.setNull(jj++, Types.INTEGER);
+						else				
+								pstmt.setString(jj++, insurance_id);						
 				}
 				catch(Exception ex){
 						msg += ex;
@@ -627,12 +700,12 @@ public class Permit implements java.io.Serializable{
 						qq += "notes = ?,";
 			
 						qq += "invoice_id=?,";
-						qq += "permit_type=? ";			
+						qq += "permit_type=?, insurance_id=? ";			
 						qq += " where id = ? ";
 						logger.debug(qq);
 						pstmt = con.prepareStatement(qq);
 						setFields(pstmt);
-						pstmt.setString(13, id);
+						pstmt.setString(14, id);
 						pstmt.executeUpdate();
 				}
 				catch (Exception ex){
@@ -675,7 +748,7 @@ public class Permit implements java.io.Serializable{
 								"c.notes, " +  // 8
 								"c.invoice_id, " + //				
 								"c.permit_type, " +
-								"u.empid,u.fullname,u.role,u.active "+
+								"u.empid,u.fullname,u.role,u.active,c.insurance_id "+
 								" from excavpermits c "+
 								" left join users u on u.id=c.reviewer_id "+
 								" where c.id=?";
@@ -702,7 +775,8 @@ public class Permit implements java.io.Serializable{
 													rs.getString(14),
 													rs.getString(15),
 													rs.getString(16),
-													rs.getString(17)
+													rs.getString(17),
+													rs.getString(18)
 													);
 						}
 						else{

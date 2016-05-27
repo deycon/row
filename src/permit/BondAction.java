@@ -22,8 +22,8 @@ public class BondAction extends TopAction{
 		static Logger logger = Logger.getLogger(BondAction.class);
 		//
 		Bond bond = null; 
-		private List<Type> bond_types = null;
-		private List<Type> bond_companies = null;
+		public List<Type> bond_companies = null;
+		public List<Type> bond_types = null;
 		public String execute(){
 				String ret = INPUT;
 				String back = doPrepare();
@@ -84,18 +84,6 @@ public class BondAction extends TopAction{
 				return bond;
 		}
 		//
-		// always new owner
-		//
-		public List<Type> getBond_types(){
-				if(bond_types == null){
-						TypeList tl = new TypeList("bond_types");
-						String back = tl.find();
-						if(back.equals("")){
-								bond_types = tl.getTypes();
-						}
-				}
-				return bond_types;
-		}
 		public List<Type> getBond_companies(){
 				if(bond_companies == null){
 						TypeList tl = new TypeList("bond_companies");
@@ -106,6 +94,16 @@ public class BondAction extends TopAction{
 				}
 				return bond_companies;
 		}
+		public List<Type> getBond_types(){
+				if(bond_types == null){
+						TypeList tl = new TypeList("bond_types");
+						String back = tl.find();
+						if(back.equals("")){
+								bond_types = tl.getTypes();
+						}
+				}
+				return bond_types;
+		}		
 		public void setBond(Bond val){
 				if(val != null)
 						bond = val;

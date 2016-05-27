@@ -34,7 +34,7 @@
   </s:elseif>
   <p>* Indicate a required field</p>
   <s:if test="permit.id == ''">
-		<p>** If there is a list of available bonds, you can pick one. If you want to use a new bond, ignore the bond field now. You will be able to add a new bond after you Save by clicking on 'Add Bond'.</p> 
+		<p>** If there is a list of available bonds, you can pick one. If you want to use a new bond, ignore the bond field now. You will be able to add a new bond after you Save by clicking on 'Add Bond'.The same applies to insurance.</p> 
   </s:if>
   <table border="1" width="100%" cellpadding="0" cellspacing="0">
 		<caption>Permit Info</caption>
@@ -95,18 +95,32 @@
 					</tr>
 					<s:if test="permit.hasBond()" >
 						<tr>
-							<th>Bond No.</th> 
+							<th>Bond </th> 
 							<td>
-								<a href="<s:property value='#application.url' />bond.action?id=<s:property value='%{permit.bond_id}' />"><s:property value="%{permit.bond.bond_num}" /></a>
+								<a href="<s:property value='#application.url' />bond.action?id=<s:property value='%{permit.bond_id}' />"><s:property value="%{permit.bond.info}" /></a>
 							</td>
 						</tr>
 					</s:if>
 					<s:elseif test="permit.canPickBond()">
 						<tr>
 							<th>Bond </th> 
-							<td><s:select name="permit.bond_id" list="permit.bondsForSelection" value="%{permit.bond_id}" listKey="id" listValue="bond_num" headerKey="-1" headerValue="Pick One" /> ** </td>
+							<td><s:select name="permit.bond_id" list="permit.bondsForSelection" value="%{permit.bond_id}" listKey="id" listValue="info" headerKey="-1" headerValue="Pick One" /> ** </td>
 						</tr>			
 					</s:elseif>
+					<s:if test="permit.hasInsurance()" >
+						<tr>
+							<th>Insurance </th> 
+							<td>
+								<a href="<s:property value='#application.url' />insurance.action?id=<s:property value='%{permit.insurance_id}' />"><s:property value="%{permit.insurance.info}" /></a>
+							</td>
+						</tr>
+					</s:if>					
+					<s:elseif test="permit.canPickInsurance()">
+						<tr>
+							<th>Insurance </th> 
+							<td><s:select name="permit.insurance_id" list="permit.insurancesForSelection" value="%{permit.insurance_id}" listKey="id" listValue="info" headerKey="-1" headerValue="Pick One" /> ** </td>
+						</tr>			
+					</s:elseif>					
 					<s:if test="permit.hasInvoice()" >
 						<tr>
 							<th>Invoice No.</th>
