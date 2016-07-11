@@ -40,24 +40,24 @@
 	  <td>
 		<table width="100%">
 		  <s:if test="insurance.hasCompany()" >
-			<tr>
-			  <th>Company</th> 
-			  <td><a href="<s:property value='#application.url' />company.action?id=<s:property value='%{insurance.company.id}' />"><s:property value="%{insurance.company.name}"/></a>
-			  </td>
-			</tr>						  
-			<s:if test="insurance.hasContact()" >
-			<tr>
-			  <th>Contact</th>
-			  <td><a href="<s:property value='#application.url' />contact.action?id=<s:property value='%{insurance.contact.id}' />"><s:property value="%{insurance.contact.fullName}"/></a>
-			</td>
-			</tr>						
-			</s:if>	
+				<tr>
+					<th>Company</th> 
+					<td><a href="<s:property value='#application.url' />company.action?id=<s:property value='%{insurance.company.id}' />"><s:property value="%{insurance.company.name}"/></a>
+					</td>
+				</tr>						  
+				<s:if test="insurance.hasContact()" >
+					<tr>
+						<th>Contact</th>
+						<td><a href="<s:property value='#application.url' />contact.action?id=<s:property value='%{insurance.contact.id}' />"><s:property value="%{insurance.contact.fullName}"/></a>
+						</td>
+					</tr>						
+				</s:if>	
 		  </s:if>
 		  <s:elseif test="insurance.hasContact()" >
-			<tr>
-			  <th>Contact</th> 
-			  <td><s:property value="%{insurance.contact.fullName}"/></td>
-			</tr>
+				<tr>
+					<th>Contact</th> 
+					<td><s:property value="%{insurance.contact.fullName}"/></td>
+				</tr>
 		  </s:elseif>
 		  <tr>
 				<th>Insurance Company</th> 

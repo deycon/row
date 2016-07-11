@@ -517,7 +517,7 @@ public class Permit implements java.io.Serializable{
 				}
 
 				String qq = "insert into excavpermits values (0,"+
-						"?,?,?,?,?,?,?,?,?,?,"+
+						" ?,?,?,?,?, ?,?,?,?,?, "+
 						"?,?,?)";
 				con = Helper.getConnection();
 				if(con == null){
