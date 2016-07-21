@@ -23,13 +23,13 @@
 	</s:iterator>
 </ul>
 -->
-<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>	
+<script src="https://maps.googleapis.com/maps/api/js?key=<s:property value='key' />" type="text/javascript"></script>	
 
 <script>
 
 var addresses = [
 	<s:iterator value="excavations" status="addrStatus" >
-	['<s:property value="id" />', '<s:property value="address" />',<s:property value="address.loc_lat" />,<s:property value="address.loc_long" />,<s:property value="utility_type_id" />,'<s:property value="status" />','<s:property value="permit.company" />','<s:property value="permit_num" />']
+	["<s:property value="id" />", "<s:property value="address" />",<s:property value="address.loc_lat" />,<s:property value="address.loc_long" />,<s:property value="utility_type_id" />,"<s:property value="status" />","<s:property value="permit.company" />","<s:property value="permit_num" />"]
 	<s:if test="!#addrStatus.last" >,</s:if>
 	</s:iterator>
 ];
@@ -40,7 +40,6 @@ var new_batch = [];
 var map;
 var firstTime = true;
 var colors = ['orange-dot.png','pink-dot.png','yellow-dot.png','ltblue-dot.png','green-dot.png','red-dot.png','blue-dot.png','purple-dot.png'];
-// http://maps.google.com/mapfiles/ms/icons/gray-dot.png
 			 
 var myStyles =[{
     featureType: "poi",

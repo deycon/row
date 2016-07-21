@@ -14,6 +14,7 @@ public class InspectorList{
 
 		static Logger logger = Logger.getLogger(InspectorList.class);
 		static final long serialVersionUID = 151L;
+		boolean activeOnly = false;
 		List<User> inspectors = null;
     String errors = "";
     public InspectorList(){
@@ -23,6 +24,9 @@ public class InspectorList{
 		}
 		public boolean hasErrors(){
 				return !errors.equals("");
+		}
+		public void setActiveOnly(){
+				activeOnly = true;
 		}
 		public List<User> getInspectors(){
 				return inspectors;
@@ -34,7 +38,8 @@ public class InspectorList{
 		public String find(){
 		
 				String msg="";
-				String qq = "select * from users u,inspectors s where u.id=s.user_id order by u.fullname";
+				String qq = "select u.id,u.empid,u.fullname,u.role,s.active from users u,inspectors s where s.user_id=u.id ";				
+				// String qq = "select * from users u,inspectors s where u.id=s.user_id order by u.fullname";
 				Connection con = null;
 				Statement stmt = null;
 				ResultSet rs = null;
@@ -45,6 +50,10 @@ public class InspectorList{
 						return msg;
 				}		
 				try{
+						if(activeOnly){
+								qq += " and s.active is not null ";
+						}
+						qq += " order by u.fullname ";
 						stmt = con.createStatement();
 						rs = stmt.executeQuery(qq);
 						inspectors = new ArrayList<User>();

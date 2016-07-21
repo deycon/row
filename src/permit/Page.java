@@ -23,7 +23,8 @@ public class Page{
     }	
 
 		public String getPage_num(){
-				return page_num;
+				return "";
+				// return page_num;
     }
 		public Integer getNeededLines(){
 				return new Integer(neededLines);

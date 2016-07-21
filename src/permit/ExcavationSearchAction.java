@@ -26,6 +26,7 @@ public class ExcavationSearchAction extends TopAction{
 		List<Address> addresses = null;
 		ExcavationList excavList = null;
 		String excavationsTitle = "Most recent excavations";
+		ApiKey key = null;
 		public String execute(){
 				String ret = SUCCESS;
 				String back = doPrepare();
@@ -140,7 +141,26 @@ public class ExcavationSearchAction extends TopAction{
 				}
 				return utility_types;
 
-		}	
+		}
+		public ApiKey getKey(){
+				ApiKeyList akl = new ApiKeyList();
+				String back = akl.find();
+				if(back.equals("")){
+						List<ApiKey> keys = akl.getKeys();
+						if(keys != null && keys.size() > 0){
+								key = keys.get(0);
+						}
+				}
+				return key;
+		}
+		public String getKeyValue(){
+				String ret = "";
+				getKey();
+				if(key != null){
+						ret = key.getValue();
+				}
+				return ret;
+		}
 		String company_name="", contact_name="";
 		public void setCompany_name(String val){
 				if(val != null)

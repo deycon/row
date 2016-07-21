@@ -145,6 +145,7 @@ Notes:
 <s:if test="excavations != null">
 	<s:set var="excavationsTitle" value="excavationsTitle" />	
 	<s:set var="excavations" value="excavations" />
+	<s:set var="apikey" value="key" />
 	<%@  include file="excavations.jsp" %>	  
 </s:if>
 <%@  include file="footer.jsp" %>

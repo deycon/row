@@ -42,7 +42,7 @@ public class Inspector extends User{
 		public String doSelect(){
 		
 				String msg="", qq="";
-				qq = "select u.id,u.empid,u.fullname,u.role,u.active from users u,inspectors s where s.user_id=u.id and ";
+				qq = "select u.id,u.empid,u.fullname,u.role,s.active from users u,inspectors s where s.user_id=u.id and ";
 				if(!empid.equals(""))
 						qq += " u.empid = ?";
 				else

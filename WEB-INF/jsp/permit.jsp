@@ -87,7 +87,17 @@
 					</tr>
 					<tr>
 						<th>Reviewer</th> 
-						<td><s:select name="permit.reviewer_id" value="%{permit.reviewer_id}" list="inspectors" listKey="id" listValue="fullName" headerKey="-1" headerValue="" /></td>
+						<td><select name="permit.reviewer_id" value="%{permit.reviewer_id}" >
+							<option value="-1"></option>
+							  <s:iterator var="one" value="inspectors">
+									<s:if test="id == permit.reviewer_id">
+										<option selected="selected" value="<s:property value="id" />"><s:property value="fullName" /></option>
+									</s:if>
+									<s:elseif test="isActive()">
+										<option value="<s:property value="id" />""><s:property value="fullName"/></option>
+									</s:elseif>
+								</s:iterator>
+						</select></td>
 					</tr>
 					<tr>
 						<th>Fee </th> 

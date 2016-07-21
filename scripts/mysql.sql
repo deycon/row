@@ -71,7 +71,15 @@
 	 insert into category_tables values('bond_types','Bond Types'),('bond_companies','Bond Companies'),('contact_types','Contact Types'),('cut_types','Cut Types'),('utility_types','Utility Types'),('statuses','Statuses');
 ;;
 	 create table receipts(id int not null auto_increment, invoice_id int, date date, payment_type enum('Cash','Check','Money Order', 'Credit Card'), check_num varchar(70), paid_by varchar(70), user_id int, voided char(1), amount_paid double(10,2), primary key(id), foreign key(invoice_id) references invoices(id))engine=InnoDB;
-  
+
+;;
+;; to use google maps you need google api key, they are free to apply
+;; add your google api key (you need to apply to get one from google)
+;; then add insert them like this (you need at least one)
+;; insert into api_keys('key1','your api key')
+
+	 create table api_keys(name varchar(30), value varchar(30))engine=InnoDB;
+	 
 
 
 
