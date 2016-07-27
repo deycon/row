@@ -39,6 +39,9 @@ public class Type{
     // getters
     //
 		public String getId(){
+				if(id.equals("")){
+						return "-1";
+				}
 				return id;
     }
 		public String getName(){
@@ -70,7 +73,7 @@ public class Type{
 		}
 
 		public void setId(String val){
-				if(val != null)
+				if(val != null && !val.equals("-1"))
 						id = val;
 		}
 		public void setName(String val){
@@ -81,7 +84,6 @@ public class Type{
 		public void setTable_name(String val){
 				if(val != null){
 						table_name = val;
-						System.err.println(" set table name "+table_name);
 				}
 		}
 		public void setUser_id(String val){
@@ -175,7 +177,6 @@ public class Type{
 						return msg;
 				}
 				try {
-						System.err.println(" in select "+table_name);
 						qq = "select name from "+table_name+" where id=? "; 
 						logger.debug(qq);
 						pstmt = con.prepareStatement(qq);

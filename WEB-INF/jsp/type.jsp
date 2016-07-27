@@ -6,13 +6,18 @@
  *
 	-->
 <s:form action="type" method="post" id="form_id">    
-  <s:if test="type.id == ''">
-		<h3>New <s:property value="%{table.nameSingle}" /></h3>
-  </s:if>
-  <s:else>
+  <s:if test="type.id == '' || type.id == '-1'">
+		<s:if test="table.nameSingle == ''">
+			<h3>Pick Category to Add or Edit</h3>			
+		</s:if>
+		<s:else>
+			<h3>New <s:property value="%{table.nameSingle}" /></h3>
+		</s:else>
+	</s:if>
+	<s:else>
 		<h3>Edit <s:property value="%{table.nameSingle}" /> <s:property value="type.id" /></h3>
 		<s:hidden name="type.id" value="%{type.id}" />
-  </s:else>
+	</s:else>
   <s:hidden name="action2" value="" id="action_id" />  
   <s:if test="hasActionErrors()">
 		<div class="errors">
@@ -48,7 +53,7 @@
 				<table width="100%">
 					<tr>
 						<th>Type/Category </th> 
-						<td><s:select name="table_name" value="%{table_name}" list="tables" listKey="id" listValue="name" onchange="updateInput()" id="select_id" /></td>
+						<td><s:select name="table_name" value="%{table_name}" list="tables" listKey="id" listValue="name" onchange="updateInput()" id="select_id" headerKey="-1" headerValue="Select Type" /></td>
 					</tr>
 					<tr>
 						<th>Name/Description *</th> 
